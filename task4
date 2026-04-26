@@ -1,0 +1,25 @@
+
+#define  TEMPERATURE_SENSOR  A1
+
+void setup() {
+  Serial.begin(9600);
+}
+
+// char buf[15];
+
+void loop() {
+  int temper;
+  int x = analogRead(TEMPERATURE_SENSOR);
+  float y = 5*x/1024.*100 - 50;
+  temper = (int)y;
+  if (abs(y) - abs(temper) > 0.5)  
+    if (y > 0)
+      temper++;						// arredonda para cima
+    else
+      temper--;						// arredonda para baixo    
+  // sprintf(buf,"%3d.%01d graus\n\r",(int)temper, abs((int)(temper*10)%10));
+  // Serial.print(buf);
+  // Serial.print((int)temper);  // send two bytes (MSB first)
+  Serial.write((byte)temper);    // send one byte
+  delay(1000);
+}
