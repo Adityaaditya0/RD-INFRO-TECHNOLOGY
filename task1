@@ -1,0 +1,36 @@
+// pin assignments
+const int BOT1 = 2;
+const int LED1 = 13;
+
+// variable to hold the status of the switch
+// 0 or LOW means released; 1 or HIGH means pressed
+int switchStatus = 0;
+
+void setup()
+{
+  	// setting the push button pin as input
+ 	pinMode(BOT1, INPUT);
+  	// setting the LED pin as output
+  	pinMode(LED1, OUTPUT);
+}
+
+void loop()
+{
+  	// reading the state of the push button
+ 	switchStatus = digitalRead(BOT1);
+  
+  	// if push button is pressed, turn on the LED
+  	if(switchStatus == HIGH)
+    {
+     	digitalWrite(LED1, HIGH); 
+    }
+  
+  	// if the push button is released, turn off the LED
+  	else
+    {
+     	digitalWrite(LED1, LOW); 
+    }
+  
+  	// delay to improve simulation performance
+  	delay(100);
+}
